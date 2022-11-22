@@ -1,6 +1,6 @@
-package com.example.spring_pre_project.coffee;
+package com.example.pre_pre_project.coffee;
 
-import com.example.spring_pre_project.order.OrderCoffee;
+import com.example.pre_pre_project.order.OrderCoffee;
 
 import java.util.List;
 
