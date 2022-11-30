@@ -1,4 +1,4 @@
-package com.example.pre_pre_project.order;
+package com.example.pre_pre_project.order.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

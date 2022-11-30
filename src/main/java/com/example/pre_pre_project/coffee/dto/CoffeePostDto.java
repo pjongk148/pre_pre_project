@@ -11,7 +11,6 @@ import javax.validation.constraints.Pattern;
 @Getter
 @Setter
 public class CoffeePostDto {
-    private long coffeeId;
 
     @NotBlank
     private String korName;
