@@ -1,9 +1,11 @@
 package com.example.pre_pre_project.coffee.service;
 
 import com.example.pre_pre_project.coffee.entity.Coffee;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CoffeeService {
 
     public Coffee createCoffee(Coffee coffee) {

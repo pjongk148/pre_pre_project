@@ -5,17 +5,24 @@ import com.example.pre_pre_project.member.service.MemberService;
 import com.example.pre_pre_project.member.dto.MemberPatchDto;
 import com.example.pre_pre_project.member.dto.MemberPostDto;
 import com.example.pre_pre_project.member.mapper.MemberMapper;
+import com.example.pre_pre_project.response.ErrorResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/v1/members")
 @Validated
+@Slf4j
 public class MemberController {
     private final MemberService memberService;
     private final MemberMapper mapper;
