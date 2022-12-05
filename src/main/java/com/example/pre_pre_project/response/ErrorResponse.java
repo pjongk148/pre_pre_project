@@ -1,7 +1,9 @@
 package com.example.pre_pre_project.response;
 
-import lombok.AllArgsConstructor;
+import com.example.pre_pre_project.exception.BusinessLogicException;
+import com.example.pre_pre_project.exception.ExceptionCode;
 import lombok.Getter;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
@@ -16,11 +18,18 @@ public class ErrorResponse {
     private List<FieldError> fieldErrors;
     private List<ConstraintViolationError> violationErrors;
 
-    private ErrorResponse(final List<FieldError> fieldErrors,final  List<ConstraintViolationError> violationErrors) {
+    private int status;
+    private String message;
+
+    private ErrorResponse(final List<FieldError> fieldErrors, final  List<ConstraintViolationError> violationErrors) {
         this.fieldErrors = fieldErrors;
         this.violationErrors = violationErrors;
     }
 
+    public ErrorResponse(int status, String message) {
+        this.status = status;
+        this.message = message;
+    }
     public static ErrorResponse of(BindingResult bindingResult) {
         return new ErrorResponse(FieldError.of(bindingResult),null);
     }
@@ -29,6 +38,13 @@ public class ErrorResponse {
         return new ErrorResponse(null, ConstraintViolationError.of(violations));
     }
 
+    public static ErrorResponse of(ExceptionCode exceptionCode) {
+        return new ErrorResponse(exceptionCode.getStatus(), exceptionCode.getMessage());
+    }
+
+    public static ErrorResponse of(HttpStatus httpStatus) {
+        return new ErrorResponse(httpStatus.value(), httpStatus.getReasonPhrase());
+    }
 
     @Getter
     public static class FieldError {
